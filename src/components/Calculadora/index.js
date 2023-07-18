@@ -9,7 +9,20 @@ const Calculadora = () => {
 
   const handleButtonClick = (buttonLabel) => {
     switch (buttonLabel) {
- 
+      case "MC":
+        setMemory(0);
+        break;
+      case "MR":
+        setDisplayValue(memory.toString());
+        break;
+      case "M+":
+        const newValue = parseFloat(displayValue) + memory;
+        setMemory(newValue);
+        break;
+      case "M-":
+        const subtractValue = memory - parseFloat(displayValue);
+        setMemory(subtractValue);
+        break;
       case "=":
         calculateResult();
         break;
@@ -40,7 +53,10 @@ const Calculadora = () => {
     <div className="calculator">
       <Display value={displayValue} />
       <div className="button-container">
-
+        <Button label="MC" onClick={() => handleButtonClick("MC")} />
+        <Button label="MR" onClick={() => handleButtonClick("MR")} />
+        <Button label="M+" onClick={() => handleButtonClick("M+")} />
+        <Button label="M-" onClick={() => handleButtonClick("M-")} />
         <Button label="7" onClick={() => handleButtonClick("7")} />
         <Button label="8" onClick={() => handleButtonClick("8")} />
         <Button label="9" onClick={() => handleButtonClick("9")} />
